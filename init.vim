@@ -10,6 +10,7 @@ set shiftwidth=4
 set expandtab
 set autoindent
 set fileformat=unix
+set colorcolumn=79
 filetype indent on      " load filetype-specific indent files
 
 " for tabulation
@@ -62,8 +63,10 @@ Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 "Plug 'voldikss/vim-floaterm'
 
 Plug 'ray-x/lsp_signature.nvim'
+Plug 'numToStr/Comment.nvim'
 
 call plug#end()
+lua require('Comment').setup()
 
 " Leader bind to space
 let mapleader = ","
@@ -74,7 +77,7 @@ let g:netrw_liststyle = 3 " tree instead of plain view
 let g:netrw_browse_split = 3 " vertical split window when Enter pressed on file
 
 " Automatically format frontend files with prettier after file save
-let g:prettier#autoformat = 1
+let g:prettier#autoformat = 0
 let g:prettier#autoformat_require_pragma = 0
 
 " Disable quickfix window for prettier
@@ -83,7 +86,7 @@ let g:prettier#quickfix_enabled = 0
 " Turn on vim-sneak
 let g:sneak#label = 1
 
-colorscheme gruvbox
+"colorscheme gruvbox
 "colorscheme OceanicNext
 "let g:material_terminal_italics = 1
 " variants: default, palenight, ocean, lighter, darker, default-community,
@@ -96,8 +99,8 @@ if (has('termguicolors'))
 endif
 
 " variants: mirage, dark, dark
-"let ayucolor="mirage"
-"colorscheme ayu
+let ayucolor="dark"
+colorscheme ayu
 
 " turn off search highlight
 nnoremap ,<space> :nohlsearch<CR>
