@@ -50,9 +50,9 @@ Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
 Plug 'nvim-lua/plenary.nvim'
 
-Plug 'prettier/vim-prettier', {
-  \ 'do': 'npm install --frozen-lockfile --production',
-  \ 'for': ['javascript', 'typescript', 'typescriptreact', 'javascriptreact', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
+" Plug 'prettier/vim-prettier', {
+"   \ 'do': 'npm install --frozen-lockfile --production',
+"   \ 'for': ['javascript', 'typescript', 'typescriptreact', 'javascriptreact', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
 
 Plug 'bmatcuk/stylelint-lsp'
 
@@ -63,26 +63,26 @@ Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 "Plug 'voldikss/vim-floaterm'
 
 Plug 'ray-x/lsp_signature.nvim'
-Plug 'numToStr/Comment.nvim'
+Plug 'numToStr/Comment.nvim' 
+Plug 'sbdchd/neoformat'
+                             
+call plug#end()              
 
-call plug#end()
-lua require('Comment').setup()
-
-" Leader bind to space
-let mapleader = ","
-
-" Netrw file explorer settings
-let g:netrw_banner = 0 " hide banner above files
-let g:netrw_liststyle = 3 " tree instead of plain view
-let g:netrw_browse_split = 3 " vertical split window when Enter pressed on file
-
-" Automatically format frontend files with prettier after file save
-let g:prettier#autoformat = 0
-let g:prettier#autoformat_require_pragma = 0
-
-" Disable quickfix window for prettier
-let g:prettier#quickfix_enabled = 0
-
+" Leader bind to space       
+let mapleader = ","          
+                             
+" Netrw file explorer settin gs
+let g:netrw_banner = 0 " hid e banner above files
+let g:netrw_liststyle = 3 "  tree instead of plain view
+let g:netrw_browse_split = 3  " vertical split window when Enter pressed on file
+                             
+" Automatically format front end files with prettier after file save
+" let g:prettier#autoformat =  0
+" let g:prettier#autoformat_re quire_pragma = 0
+                             
+" Disable quickfix window fo r prettier
+" let g:prettier#quickfix_enab led = 0
+                             
 " Turn on vim-sneak
 let g:sneak#label = 1
 
@@ -105,6 +105,17 @@ colorscheme ayu
 " turn off search highlight
 nnoremap ,<space> :nohlsearch<CR>
 
+nnoremap ff  :Neoformat<CR>
+
+" Comment plugin config
+lua require('Comment').setup ()
+
+" Add autoformat for autosave
+" augroup fmt
+"   autocmd!
+"   autocmd BufWritePre * undojoin | Neoformat
+" augroup END                             
+"
 lua << EOF
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
@@ -192,7 +203,7 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-  buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+ --  buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
   require "lsp_signature".on_attach({
       bind = true, -- This is mandatory, otherwise border config won't get registered.
@@ -248,7 +259,7 @@ require'lspconfig'.stylelint_lsp.setup{
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'pyright', 'rust_analyzer' }
+local servers = { 'pyright', 'rust_analyzer'}
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,

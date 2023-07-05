@@ -9,6 +9,7 @@ brew install nvim
 brew install rust-analyzer
 brew install ripgrep
 npm install -g pyright
+npm -g install js-beautify
 ```
 
 Install also [vim-plug](https://github.com/junegunn/vim-plug) — plugin manager for vim/nvim.
