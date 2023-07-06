@@ -65,6 +65,8 @@ Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'ray-x/lsp_signature.nvim'
 Plug 'numToStr/Comment.nvim' 
 Plug 'sbdchd/neoformat'
+Plug 'tpope/vim-surround'
+Plug 'mattn/emmet-vim'
                              
 call plug#end()              
 
