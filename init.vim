@@ -56,7 +56,7 @@ Plug 'prettier/vim-prettier', {
 
 Plug 'bmatcuk/stylelint-lsp'
 
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.5' }
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.6' }
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
 " Convenient floating terminal window
@@ -67,7 +67,8 @@ Plug 'numToStr/Comment.nvim'
 Plug 'sbdchd/neoformat'
 Plug 'tpope/vim-surround'
 Plug 'mattn/emmet-vim'
-                             
+ 
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
 call plug#end()              
 
 " Leader bind to space       
@@ -79,8 +80,8 @@ let g:netrw_liststyle = 3 "  tree instead of plain view
 let g:netrw_browse_split = 3  " vertical split window when Enter pressed on file
                              
 " Automatically format front end files with prettier after file save
-" let g:prettier#autoformat =  0
-" let g:prettier#autoformat_re quire_pragma = 0
+let g:prettier#autoformat =  0
+let g:prettier#autoformat_require_pragma = 0
                              
 " Disable quickfix window fo r prettier
 " let g:prettier#quickfix_enab led = 0
@@ -205,7 +206,7 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
- --  buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+  buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
   require "lsp_signature".on_attach({
       bind = true, -- This is mandatory, otherwise border config won't get registered.
