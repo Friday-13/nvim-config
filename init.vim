@@ -75,7 +75,7 @@ call plug#end()
 let mapleader = ","          
                              
 " Netrw file explorer settin gs
-let g:netrw_banner = 0 " hid e banner above files
+let g:netrw_banner = 1 " hid e banner above files
 let g:netrw_liststyle = 3 "  tree instead of plain view
 let g:netrw_browse_split = 3  " vertical split window when Enter pressed on file
                              
@@ -225,7 +225,7 @@ local buf_map = function(bufnr, mode, lhs, rhs, opts)
     })
 end
 
-nvim_lsp.tsserver.setup({
+nvim_lsp.ts_ls.setup({
     on_attach = function(client, bufnr)
         client.server_capabilities.document_formatting = false
         client.server_capabilities.document_range_formatting = false
@@ -396,6 +396,7 @@ nnoremap L gt
 lua << EOF
 require("auto-save").setup(
     {
+        debounce_delay = 2000, -- delay after which a pending save is executed
     }
 )
 EOF
