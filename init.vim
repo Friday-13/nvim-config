@@ -46,7 +46,8 @@ Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'maxmellon/vim-jsx-pretty'
 " TS from here https://jose-elias-alvarez.medium.com/configuring-neovims-lsp-client-for-typescript-development-5789d58ea9c
-Plug 'jose-elias-alvarez/null-ls.nvim'
+Plug 'nvimtools/none-ls.nvim'
+Plug 'nvimtools/none-ls-extras.nvim'
 Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
 Plug 'nvim-lua/plenary.nvim'
 
@@ -241,9 +242,12 @@ nvim_lsp.ts_ls.setup({
 
 local null_ls = require("null-ls")
 null_ls.setup({
+    debug = true,
     sources = {
-        null_ls.builtins.diagnostics.eslint,
-        null_ls.builtins.code_actions.eslint,
+        require("none-ls.diagnostics.eslint_d"),
+        require("none-ls.code_actions.eslint_d"),
+        -- null_ls.builtins.diagnostics.eslint_d,
+        -- null_ls.builtins.code_actions.eslint_d,
         null_ls.builtins.formatting.prettier
     },
     on_attach = on_attach
@@ -270,6 +274,14 @@ for _, lsp in ipairs(servers) do
     }
   }
 end
+
+require('lspconfig').clangd.setup{
+    on_attach = on_attach,
+    cmd = { "clangd", "--background-index", "--clang-tidy", "--completion-style=detailed" },
+    filetypes = { "c", "cpp", "objc", "objcpp" },
+    root_dir = require('lspconfig/util').root_pattern("compile_commands.json", ".git")
+}
+
 
 -- Add html and css support
 -- Enable (broadcasting) snippet capability for completion
@@ -365,8 +377,8 @@ map gp :bp<cr>
 map gw :Bclose<cr>
 
 " Run Python and C files by Ctrl+h
-autocmd FileType python map <buffer> <C-h> :w<CR>:exec '!python3.11' shellescape(@%, 1)<CR>
-autocmd FileType python imap <buffer> <C-h> <esc>:w<CR>:exec '!python3.11' shellescape(@%, 1)<CR>
+autocmd FileType python map <buffer> <C-h> :w<CR>:exec '!python3.13' shellescape(@%, 1)<CR>
+autocmd FileType python imap <buffer> <C-h> <esc>:w<CR>:exec '!python3.13' shellescape(@%, 1)<CR>
 
 autocmd FileType c map <buffer> <C-h> :w<CR>:exec '!gcc' shellescape(@%, 1) '-o out; ./out'<CR>
 autocmd FileType c imap <buffer> <C-h> <esc>:w<CR>:exec '!gcc' shellescape(@%, 1) '-o out; ./out'<CR>
@@ -403,6 +415,11 @@ EOF
 
 " Telescope fzf plugin
 lua << EOF
+require('telescope').setup{
+  defaults = {
+    file_ignore_patterns = { "node_modules", "build", "Drivers", "Middlewares" }
+  }
+}
 require('telescope').load_extension('fzf')
 EOF
 
