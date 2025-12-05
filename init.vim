@@ -78,7 +78,7 @@ let mapleader = ","
 " Netrw file explorer settin gs
 let g:netrw_banner = 1 " hid e banner above files
 let g:netrw_liststyle = 3 "  tree instead of plain view
-let g:netrw_browse_split = 3  " vertical split window when Enter pressed on file
+let g:netrw_browse_split = 0  " vertical split window when Enter pressed on file
                              
 " Automatically format front end files with prettier after file save
 let g:prettier#autoformat =  0
@@ -248,6 +248,7 @@ null_ls.setup({
         require("none-ls.code_actions.eslint_d"),
         -- null_ls.builtins.diagnostics.eslint_d,
         -- null_ls.builtins.code_actions.eslint_d,
+        null_ls.builtins.formatting.clang_format,
         null_ls.builtins.formatting.prettier
     },
     on_attach = on_attach
