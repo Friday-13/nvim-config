@@ -7,7 +7,8 @@ vim.opt.scrolloff = 7
 
 vim.opt.softtabstop = 4
 vim.opt.autoindent = true
-fileformat='unix'
+vim.opt.fileformat='unix'
+
 
 -- for tabulation
 vim.opt.smartindent = true
