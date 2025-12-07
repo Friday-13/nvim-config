@@ -23,11 +23,11 @@
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/nvim-cmp'
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'saadparwaiz1/cmp_luasnip'
-Plug 'L3MON4D3/LuaSnip'
+ Plug 'neovim/nvim-lspconfig'
+ Plug 'hrsh7th/nvim-cmp'
+ Plug 'hrsh7th/cmp-nvim-lsp'
+ Plug 'saadparwaiz1/cmp_luasnip'
+ Plug 'L3MON4D3/LuaSnip'
 
 " color schemas
 Plug 'morhetz/gruvbox'  " colorscheme gruvbox
@@ -63,8 +63,8 @@ Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 " Convenient floating terminal window
 Plug 'voldikss/vim-floaterm'
 
-Plug 'ray-x/lsp_signature.nvim'
-Plug 'numToStr/Comment.nvim' 
+ Plug 'ray-x/lsp_signature.nvim'
+ Plug 'numToStr/Comment.nvim' 
 Plug 'sbdchd/neoformat'
 Plug 'tpope/vim-surround'
 Plug 'mattn/emmet-vim'
@@ -112,7 +112,7 @@ colorscheme ayu
 nnoremap ff  :Neoformat<CR>
 
 " Comment plugin config
-lua require('Comment').setup ()
+"lua require('Comment').setup ()
 
 " Add autoformat for autosave
 " augroup fmt
