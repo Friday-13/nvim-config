@@ -32,3 +32,9 @@ vim.opt.relativenumber = true
 
 vim.g.transparent_enabled = true
 
+vim.filetype.add({
+  extension = {
+    md = "markdown",
+    MD = "markdown",
+  },
+})
