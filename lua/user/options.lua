@@ -19,3 +19,16 @@ vim.opt.shiftwidth=2
 
 vim.cmd([[filetype indent on]])
 
+
+-- leader bind to space       
+vim.g.mapleader = ","
+
+-- netrw file explorer settings
+vim.g.netrw_banner = 1 -- hide banner above files
+vim.g.netrw_liststyle = 3 -- tree instead of plain view
+vim.g.netrw_browse_split = 0  -- vertical split window when Enter pressed on file
+
+vim.opt.relativenumber = true
+
+vim.g.transparent_enabled = true
+

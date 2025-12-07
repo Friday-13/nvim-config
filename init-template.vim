@@ -73,12 +73,12 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' 
 call plug#end()              
 
 " Leader bind to space       
-let mapleader = ","          
+" let mapleader = ","          
                              
 " Netrw file explorer settin gs
-let g:netrw_banner = 1 " hid e banner above files
-let g:netrw_liststyle = 3 "  tree instead of plain view
-let g:netrw_browse_split = 0  " vertical split window when Enter pressed on file
+" let g:netrw_banner = 1 " hid e banner above files
+" let g:netrw_liststyle = 3 "  tree instead of plain view
+" let g:netrw_browse_split = 0  " vertical split window when Enter pressed on file
                              
 " Automatically format front end files with prettier after file save
 let g:prettier#autoformat =  0
@@ -107,7 +107,7 @@ let ayucolor="dark"
 colorscheme ayu
 
 " turn off search highlight
-nnoremap ,<space> :nohlsearch<CR>
+" nnoremap ,<space> :nohlsearch<CR>
 
 nnoremap ff  :Neoformat<CR>
 
@@ -371,11 +371,11 @@ function! s:Bclose(bang, buffer)
   execute wcurrent.'wincmd w'
 endfunction
 command! -bang -complete=buffer -nargs=? Bclose call <SID>Bclose(<q-bang>, <q-args>)
-nnoremap <silent> <Leader>bd :Bclose<CR>
-
-map gn :bn<cr>
-map gp :bp<cr>
-map gw :Bclose<cr>
+" nnoremap <silent> <Leader>bd :Bclose<CR>
+"
+" map gn :bn<cr>
+" map gp :bp<cr>
+" map gw :Bclose<cr>
 
 " Run Python and C files by Ctrl+h
 autocmd FileType python map <buffer> <C-h> :w<CR>:exec '!python3.13' shellescape(@%, 1)<CR>
@@ -389,20 +389,20 @@ autocmd FileType sh imap <buffer> <C-h> <esc>:w<CR>:exec '!bash' shellescape(@%,
 
 autocmd FileType python set colorcolumn=79
 
-set relativenumber
-set rnu
+" set relativenumber
+" set rnu
+"
+" let g:transparent_enabled = v:true
 
-let g:transparent_enabled = v:true
-
-tnoremap <Esc> <C-\><C-n>
+" tnoremap <Esc> <C-\><C-n>
 
 " Telescope bindings
 nnoremap ,f <cmd>Telescope find_files<cr>
 nnoremap ,g <cmd>Telescope live_grep<cr>
 
 " Go to next or prev tab by H and L accordingly
-nnoremap H gT
-nnoremap L gt
+" nnoremap H gT
+" nnoremap L gt
 
 " Autosave plugin
 
