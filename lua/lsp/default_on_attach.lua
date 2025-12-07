@@ -37,4 +37,4 @@ local on_attach = function(_, bufnr)
     }, bufnr)
 end
 
-return {on_attach};
+return on_attach;
