@@ -1,3 +1,5 @@
 vim.cmd([[source ~/.config/nvim/init-template.vim]])
 require('user/options')
+require('user/keymaps')
 require('lsp')
+require("user.lazy")

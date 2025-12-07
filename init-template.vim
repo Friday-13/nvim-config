@@ -1,5 +1,5 @@
 " set mouse=a  " enable mouse
-set encoding=utf-8
+" set encoding=utf-8
 " set number
 " set noswapfile
 " set scrolloff=7
@@ -11,7 +11,7 @@ set encoding=utf-8
 " set autoindent
 " set fileformat=unix
 " set colorcolumn=79
-filetype indent on      " load filetype-specific indent files
+" filetype indent on      " load filetype-specific indent files
 
 " for tabulation
 " set smartindent
@@ -19,7 +19,7 @@ filetype indent on      " load filetype-specific indent files
 " set expandtab
 " set shiftwidth=2
 
-inoremap jk <esc>
+" inoremap jk <esc>
 
 call plug#begin('~/.vim/plugged')
 
