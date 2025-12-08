@@ -38,3 +38,7 @@ vim.filetype.add({
     MD = "markdown",
   },
 })
+
+-- autocomplete options
+vim.opt.completeopt = { "menuone", "noselect" }
+

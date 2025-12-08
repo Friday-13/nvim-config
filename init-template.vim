@@ -98,13 +98,13 @@ call plug#end()
 "           darker-community
 "let g:material_theme_style = 'darker'
 "colorscheme material
-if (has('termguicolors'))
-  set termguicolors
-endif
+" if (has('termguicolors'))
+"   set termguicolors
+" endif
 
 " variants: mirage, dark, dark
-let ayucolor="dark"
-colorscheme ayu
+" let ayucolor="dark"
+" colorscheme ayu
 
 " turn off search highlight
 " nnoremap ,<space> :nohlsearch<CR>
