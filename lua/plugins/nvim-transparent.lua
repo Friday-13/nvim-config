@@ -1,3 +1,3 @@
 return {
-  "xiyaowong/nvim-transparent"
+ "xiyaowong/nvim-transparent"
 }
