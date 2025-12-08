@@ -81,8 +81,8 @@ call plug#end()
 " let g:netrw_browse_split = 0  " vertical split window when Enter pressed on file
                              
 " Automatically format front end files with prettier after file save
-let g:prettier#autoformat =  0
-let g:prettier#autoformat_require_pragma = 0
+" let g:prettier#autoformat =  0
+" let g:prettier#autoformat_require_pragma = 0
                              
 " Disable quickfix window fo r prettier
 " let g:prettier#quickfix_enab led = 0

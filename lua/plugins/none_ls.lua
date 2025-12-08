@@ -3,6 +3,7 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvimtools/none-ls-extras.nvim",
+    "prettier/vim-prettier"
   },
   config = function()
     local null_ls = require("null-ls")
