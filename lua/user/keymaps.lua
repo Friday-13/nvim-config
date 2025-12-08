@@ -24,3 +24,8 @@ vim.keymap.set("x", "<Leader>p", "<Plug>(Prettier)")
 
 --neoformat
 vim.keymap.set("n", "ff", ":Neoformat<CR>", { silent = true })
+
+--telescope
+
+vim.keymap.set("n", "<Leader>f", "<cmd>Telescope find_files<cr>")
+ vim.keymap.set("n", "<Leader>g", "<cmd>Telescope live_grep<cr>")

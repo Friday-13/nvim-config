@@ -41,10 +41,10 @@ Plug 'Pocco81/auto-save.nvim'
 Plug 'justinmk/vim-sneak'
 
 " JS/JSX/TS
-Plug 'pangloss/vim-javascript'
-Plug 'leafgarland/typescript-vim'
-Plug 'peitalin/vim-jsx-typescript'
-Plug 'maxmellon/vim-jsx-pretty'
+" Plug 'pangloss/vim-javascript'
+" Plug 'leafgarland/typescript-vim'
+" Plug 'peitalin/vim-jsx-typescript'
+" Plug 'maxmellon/vim-jsx-pretty'
 " TS from here https://jose-elias-alvarez.medium.com/configuring-neovims-lsp-client-for-typescript-development-5789d58ea9c
 Plug 'nvimtools/none-ls.nvim'
 Plug 'nvimtools/none-ls-extras.nvim'
@@ -88,7 +88,7 @@ call plug#end()
 " let g:prettier#quickfix_enab led = 0
                              
 " Turn on vim-sneak
-let g:sneak#label = 1
+" let g:sneak#label = 1
 
 "colorscheme gruvbox
 "colorscheme OceanicNext
@@ -109,7 +109,7 @@ colorscheme ayu
 " turn off search highlight
 " nnoremap ,<space> :nohlsearch<CR>
 
-nnoremap ff  :Neoformat<CR>
+" nnoremap ff  :Neoformat<CR>
 
 " Comment plugin config
 "lua require('Comment').setup ()
@@ -240,19 +240,19 @@ nvim_lsp.ts_ls.setup({
     end,
 })
 
-local null_ls = require("null-ls")
-null_ls.setup({
-    debug = true,
-    sources = {
-        require("none-ls.diagnostics.eslint_d"),
-        require("none-ls.code_actions.eslint_d"),
-        -- null_ls.builtins.diagnostics.eslint_d,
-        -- null_ls.builtins.code_actions.eslint_d,
-        null_ls.builtins.formatting.clang_format,
-        null_ls.builtins.formatting.prettier
-    },
-    on_attach = on_attach
-})
+-- local null_ls = require("null-ls")
+-- null_ls.setup({
+--     debug = true,
+--     sources = {
+--         require("none-ls.diagnostics.eslint_d"),
+--         require("none-ls.code_actions.eslint_d"),
+--         -- null_ls.builtins.diagnostics.eslint_d,
+--         -- null_ls.builtins.code_actions.eslint_d,
+--         null_ls.builtins.formatting.clang_format,
+--         null_ls.builtins.formatting.prettier
+--     },
+--     on_attach = on_attach
+-- })
 
 -- Stylelint format after save
 require'lspconfig'.stylelint_lsp.setup{
@@ -266,15 +266,15 @@ require'lspconfig'.stylelint_lsp.setup{
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'pyright', 'rust_analyzer'}
-for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup {
-    on_attach = on_attach,
-    flags = {
-      debounce_text_changes = 150,
-    }
-  }
-end
+-- local servers = { 'pyright', 'rust_analyzer'}
+-- for _, lsp in ipairs(servers) do
+--   nvim_lsp[lsp].setup {
+--     on_attach = on_attach,
+--     flags = {
+--       debounce_text_changes = 150,
+--     }
+--   }
+-- end
 
 require('lspconfig').clangd.setup{
     on_attach = on_attach,
@@ -397,8 +397,8 @@ autocmd FileType python set colorcolumn=79
 " tnoremap <Esc> <C-\><C-n>
 
 " Telescope bindings
-nnoremap ,f <cmd>Telescope find_files<cr>
-nnoremap ,g <cmd>Telescope live_grep<cr>
+" nnoremap ,f <cmd>Telescope find_files<cr>
+" nnoremap ,g <cmd>Telescope live_grep<cr>
 
 " Go to next or prev tab by H and L accordingly
 " nnoremap H gT
@@ -406,23 +406,23 @@ nnoremap ,g <cmd>Telescope live_grep<cr>
 
 " Autosave plugin
 
-lua << EOF
-require("auto-save").setup(
-    {
-        debounce_delay = 2000, -- delay after which a pending save is executed
-    }
-)
-EOF
-
-" Telescope fzf plugin
-lua << EOF
-require('telescope').setup{
-  defaults = {
-    file_ignore_patterns = { "node_modules", "build", "Drivers", "Middlewares" }
-  }
-}
-require('telescope').load_extension('fzf')
-EOF
+" lua << EOF
+" require("auto-save").setup(
+"     {
+"         debounce_delay = 2000, -- delay after which a pending save is executed
+"     }
+" )
+" EOF
+"
+" " Telescope fzf plugin
+" lua << EOF
+" require('telescope').setup{
+"   defaults = {
+"     file_ignore_patterns = { "node_modules", "build", "Drivers", "Middlewares" }
+"   }
+" }
+" require('telescope').load_extension('fzf')
+" EOF
 
 " Fast component creating for React app
 command CreateComponent :terminal '/Users/alexeygoloburdin/code/lms/frontend/createcomponent.py'

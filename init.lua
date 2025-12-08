@@ -1,4 +1,4 @@
-vim.cmd([[source ~/.config/nvim/init-template.vim]])
+-- vim.cmd([[source ~/.config/nvim/init-template.vim]])
 require("user/options")
 require("user/keymaps")
 require("lsp")
