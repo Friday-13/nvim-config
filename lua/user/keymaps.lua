@@ -19,6 +19,5 @@ vim.keymap.set("n", "gn", ":bn<CR>", opts)
 vim.keymap.set("n", "gp", ":bp<CR>", opts)
 
 --telescope
-
 vim.keymap.set("n", "<Leader>f", "<cmd>Telescope find_files<cr>")
 vim.keymap.set("n", "<Leader>g", "<cmd>Telescope live_grep<cr>")
