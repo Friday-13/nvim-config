@@ -6,7 +6,7 @@ vim.lsp.config("stylelint_lsp", {
   settings = {
     stylelintplus = {
       -- autoFixOnSave = true,
-      -- autoFixOnFormat = true,
+      autoFixOnFormat = true,
     },
   }
 })
