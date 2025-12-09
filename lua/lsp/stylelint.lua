@@ -12,3 +12,4 @@ vim.lsp.config("stylelint_lsp", {
 })
 
 vim.lsp.enable("stylelint_lsp", true)
+
