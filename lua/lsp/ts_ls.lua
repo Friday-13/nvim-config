@@ -8,7 +8,6 @@ local default_on_attach = require("lsp.default_on_attach")
 
 vim.lsp.config("ts_ls", {
   on_attach = function(client, bufnr)
-        print("ts_ls on attach")
         client.server_capabilities.document_formatting = false
         client.server_capabilities.document_range_formatting = false
         -- local ts_utils = require("nvim-lsp-ts-utils")
