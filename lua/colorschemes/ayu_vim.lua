@@ -1,7 +1,7 @@
 return {
  "ayu-theme/ayu-vim",
  lazy = false,
- enabled = true,
+ enabled = false,
  priority = 1000,
  config = function()
    vim.g.ayucolor = "dark"

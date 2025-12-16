@@ -42,3 +42,5 @@ vim.filetype.add({
 -- autocomplete options
 vim.opt.completeopt = { "menuone", "noselect" }
 
+-- enable true color (24-bit RGB) support
+vim.opt.termguicolors = true
