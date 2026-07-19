@@ -1,17 +1,41 @@
-# Nvim as Python / Rust / any another language IDE!
+## Overview
 
-Video (in Russian) — https://www.youtube.com/watch?v=PA7zZNJXJEk
+Neovim config for development goals. Supported languages:
 
-For Mac OS:
+- Python
+- TS/JS/CSS/HTML
+- C
+- Lua
+
+## Requirements
+
+- This configuration is developed and tested on _Neovim 0.11.4_. Other versions may work but are not officially supported.
 
 ```sh
-brew install nvim
-brew install rust-analyzer
-brew install ripgrep
-npm install -g pyright
-npm -g install js-beautify
+npm install -g \
+  eslint_d \
+  prettier \
+  pyright \
+  stylelint-lsp \
+  typescript-language-server \
+  typescript \
+  vscode-langservers-extracted
 ```
 
-Install also [vim-plug](https://github.com/junegunn/vim-plug) — plugin manager for vim/nvim.
+```sh
+sudo pacman -S ripgrep
+```
 
-Put [init.vim](init.vim) to `~/.config/nvim/init.vim` folder.
+Configs structure
+
+```
+~/.config/nvim
+├── init.lua
+├── lazy-lock.json
+├── lua
+│   ├── colorschemes
+│   ├── lsp
+│   ├── plugins
+│   └── user
+└── README.MD
+```

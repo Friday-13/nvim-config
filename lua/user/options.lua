@@ -3,6 +3,7 @@ vim.opt.number = true
 vim.opt.colorcolumn = '79'
 vim.opt.swapfile = false
 vim.opt.scrolloff = 7
+vim.opt.splitright = true
 
 
 vim.opt.softtabstop = 4

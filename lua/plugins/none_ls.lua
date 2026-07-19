@@ -9,6 +9,7 @@ return {
     local null_ls = require("null-ls")
     null_ls.setup({
     debug = true,
+    timeout_ms = 50000,
     sources = {
         require("none-ls.diagnostics.eslint_d"),
         require("none-ls.code_actions.eslint_d"),

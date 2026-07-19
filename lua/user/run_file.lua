@@ -25,6 +25,6 @@ local function map_run_file(ft, cmd)
   })
 end
 
-map_run_file("python", "python3.13")
+map_run_file("python", "python")
 map_run_file("c", "gcc % -o out && ./out")
 map_run_file("sh", "bash")
