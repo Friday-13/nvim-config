@@ -2,17 +2,12 @@
 -- Заменяет black (formatter) и isort (правила "I" + organize imports).
 vim.lsp.config("ruff", {
   on_attach = function(client, bufnr)
-    -- hover/definition/completion отдаём basedpyright, ruff только линтит и форматирует
+    -- hover отдаём basedpyright; форматирование и сортировку импортов делает
+    -- conform (ruff_format + ruff_organize_imports). ruff-LSP тут только линтинг + code actions.
     client.server_capabilities.hoverProvider = false
+    client.server_capabilities.documentFormattingProvider = false
+    client.server_capabilities.documentRangeFormattingProvider = false
     require("lsp.default_on_attach")(client, bufnr)
-
-    -- organize imports (замена isort) — отдельным аккордом, без гонки с форматированием
-    vim.keymap.set("n", "<space>oi", function()
-      vim.lsp.buf.code_action({
-        context = { only = { "source.organizeImports.ruff" }, diagnostics = {} },
-        apply = true,
-      })
-    end, { buffer = bufnr, silent = true, desc = "Ruff: organize imports" })
   end,
   init_options = {
     settings = {

@@ -33,9 +33,9 @@ return {
         "html-lsp",                   -- html
         "css-lsp",                    -- cssls
         "stylelint-lsp",              -- stylelint_lsp
+        "eslint-lsp",                 -- eslint: диагностика + автофиксы (vscode-eslint)
         "clangd",
-        -- инструменты none-ls
-        "eslint_d",
+        -- форматтеры (conform.nvim)
         "prettier",
         "clang-format",
       },

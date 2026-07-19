@@ -27,28 +27,8 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
-  -- buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.format({})<CR>', opts)
-  -- <space>f форматирует специализированными форматтерами:
-  --   null-ls (prettier/clang_format), ruff (python). Исключаем тех, кто
-  --   не должен форматировать: basedpyright/ts_ls (отключено), clangd (форматит null-ls).
-  vim.keymap.set("n", "<space>f", function()
-    vim.lsp.buf.format({
-      filter = function(c)
-        return c.name ~= "basedpyright"
-          and c.name ~= "ts_ls"
-          and c.name ~= "clangd"
-      end,
-    })
-  end, opts)
-
-  require "lsp_signature".on_attach({
-    bind = true,   -- This is mandatory, otherwise border config won't get registered.
-    floating_window = true,
-    floating_window_above_cur_line = true,
-    floating_window_off_x = 20,
-    doc_lines = 10,
-    hint_prefix = '👻 '
-  }, bufnr)
+  -- <space>f форматирует через conform.nvim (см. plugins/conform.lua), keymap задан там.
+  -- signature help показывает blink.cmp (встроенный signature), <C-k> — вручную выше.
 end
 
 return on_attach;
