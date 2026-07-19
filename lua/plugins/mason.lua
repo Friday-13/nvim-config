@@ -26,7 +26,8 @@ return {
       -- имена — это mason-пакеты (не имена lspconfig-серверов)
       ensure_installed = {
         -- LSP
-        "pyright",
+        "basedpyright",               -- python: типы/hover
+        "ruff",                       -- python: линтинг + формат (заменяет black+isort)
         "typescript-language-server", -- ts_ls
         "lua-language-server",        -- lua_ls
         "html-lsp",                   -- html
@@ -36,8 +37,6 @@ return {
         -- инструменты none-ls
         "eslint_d",
         "prettier",
-        "black",
-        "isort",
         "clang-format",
       },
       -- ставить недостающее при старте, но не запускать блокирующе

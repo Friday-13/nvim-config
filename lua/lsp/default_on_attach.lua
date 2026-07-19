@@ -28,15 +28,18 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
   -- buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.format({})<CR>', opts)
-  if client.name == "null-ls" then
-    vim.keymap.set("n", "<space>f", function()
-      vim.lsp.buf.format({
-        filter = function(c)
-          return c.name == "null-ls"
-        end,
-      })
-    end, opts)
-  end
+  -- <space>f форматирует специализированными форматтерами:
+  --   null-ls (prettier/clang_format), ruff (python). Исключаем тех, кто
+  --   не должен форматировать: basedpyright/ts_ls (отключено), clangd (форматит null-ls).
+  vim.keymap.set("n", "<space>f", function()
+    vim.lsp.buf.format({
+      filter = function(c)
+        return c.name ~= "basedpyright"
+          and c.name ~= "ts_ls"
+          and c.name ~= "clangd"
+      end,
+    })
+  end, opts)
 
   require "lsp_signature".on_attach({
     bind = true,   -- This is mandatory, otherwise border config won't get registered.

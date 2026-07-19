@@ -3,6 +3,11 @@ vim.keymap.set("n", ",<space>", ":nohlsearch<CR>")
 
 vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { noremap = true }) -- TODO: check this line
 
+-- commenting: gc/gcc/visual gc — встроены в neovim 0.10+ (Comment.nvim больше не нужен).
+-- gco/gcO — паритет с Comment.nvim: добавить закомментированную строку ниже/выше.
+vim.keymap.set("n", "gco", "o<C-o>gcc", { remap = true, desc = "Comment line below" })
+vim.keymap.set("n", "gcO", "O<C-o>gcc", { remap = true, desc = "Comment line above" })
+
 -- Go to next or prev tab by H and L accordingly
 vim.keymap.set("n", "H", "gT")
 vim.keymap.set("n", "L", "gt")
