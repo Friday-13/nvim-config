@@ -19,7 +19,7 @@ Neovim 0.11), автоустановкой тулчейна через **mason**
 ## Возможности (features)
 
 ### Ядро
-- **Ленивая загрузка** — всё грузится через [`lazy.nvim`](https://github.com/folke/lazy.nvim) по событиям/командам/типам файлов; версии зафиксированы в `lazy-lock.json`.
+- **Ленивая загрузка** — плагины грузятся через [`lazy.nvim`](https://github.com/folke/lazy.nvim) по событиям/командам/типам файлов; версии зафиксированы в `lazy-lock.json`. Исключение — `nvim-treesitter` (ветка `main` не поддерживает ленивую загрузку, грузится на старте).
 - **Нативный LSP-стек** на API Neovim 0.11 (`vim.lsp.config` / `vim.lsp.enable`), без обёрток вроде `mason-lspconfig`.
 - **Прозрачный фон** — [`nvim-transparent`](https://github.com/xiyaowong/nvim-transparent), включён по умолчанию (`vim.g.transparent_enabled = true`).
 - **Тема** — `ayu` (dark) по умолчанию; `tokyonight-storm` в комплекте (переключается в `lua/colorschemes/`).
@@ -28,7 +28,7 @@ Neovim 0.11), автоустановкой тулчейна через **mason**
 - [`mason.nvim`](https://github.com/williamboman/mason.nvim) + `mason-tool-installer` — при первом старте сами доустанавливают все LSP-серверы и форматтеры (`basedpyright`, `ruff`, `typescript-language-server`, `lua-language-server`, `html-lsp`, `css-lsp`, `stylelint-lsp`, `eslint-lsp`, `clangd`, `prettier`, `clang-format`). Ставить их руками не нужно.
 
 ### Автодополнение и подсказки
-- [`blink.cmp`](https://github.com/saghen/blink.cmp) — автодополнение с Rust-матчером (собирается локально через `cargo`), встроенный signature help, документация в поповере. Popup не выскакивает сам — вызывается по `<C-Space>`.
+- [`blink.cmp`](https://github.com/saghen/blink.cmp) — автодополнение с Rust-матчером (собирается локально через `cargo`), встроенный signature help, документация в поповере. Popup не выскакивает сам — меню и справка вызываются по `<C-Space>` (повторное нажатие прячет документацию). Версия зафиксирована на коммите с поддержкой Neovim 0.12 (обработка `vim.NIL` в LSP-ответах); вернуть на релизный тег, когда выйдет релиз > 1.10.2 с поддержкой 0.12.
 
 ### Форматирование и линтинг
 - [`conform.nvim`](https://github.com/stevearc/conform.nvim) — ручное форматирование по `<space>f` (Python → `ruff`, фронт → `prettier`, C → `clang-format`, для остального fallback на LSP). Автоформат на сохранение **выключен намеренно** (мешал бы авто-сохранению).
@@ -37,7 +37,7 @@ Neovim 0.11), автоустановкой тулчейна через **mason**
 
 ### Навигация и редактирование
 - [`telescope.nvim`](https://github.com/nvim-telescope/telescope.nvim) (+ `fzf-native`) — поиск файлов и live grep.
-- [`treesitter`](https://github.com/nvim-treesitter/nvim-treesitter) — подсветка, отступы, инкрементальное выделение; парсеры доустанавливаются автоматически.
+- [`treesitter`](https://github.com/nvim-treesitter/nvim-treesitter) (ветка `main` — для Neovim 0.11+/0.12) — подсветка и treesitter-отступы; парсеры доустанавливаются автоматически. Требует `tree-sitter-cli` для сборки парсеров. Инкрементальное выделение убрано (модуля нет на ветке `main`).
 - [`vim-sneak`](https://github.com/justinmk/vim-sneak) — быстрые прыжки по двум символам (с метками).
 - [`vim-surround`](https://github.com/tpope/vim-surround) — работа с окружениями (кавычки/скобки/теги).
 - Встроенное комментирование Neovim 0.10+ (`gc`/`gcc`), плюс `gco`/`gcO` для паритета с Comment.nvim.
@@ -98,28 +98,31 @@ Neovim 0.11), автоустановкой тулчейна через **mason**
 | Клавиша | Действие |
 |---|---|
 | `<C-h>` | сохранить и запустить текущий файл в терминале |
-| `<C-Space>` | автодополнение / инкрементальное выделение (treesitter) |
+| `<C-Space>` | автодополнение: показать меню и справку (документацию) |
 
 ---
 
 ## Установка с нуля
 
-Конфигурация разработана и протестирована на **Neovim 0.11.4**. Нужен именно
-0.11+ — используется новый LSP API. Другие версии могут работать, но официально
+Нужен **Neovim 0.11+** (используется новый LSP API); проверено на **0.12.4**.
+Ветка `main` у `nvim-treesitter` и зафиксированная версия `blink.cmp` выбраны
+именно ради совместимости с 0.12. Другие версии могут работать, но официально
 не поддерживаются.
 
 ### 1. Системные зависимости
 
 Нужны: **neovim ≥ 0.11**, **git**, **ripgrep** (live grep), **make** + **C-компилятор**
-(сборка `fzf-native` и парсеров treesitter), **node + npm** (LSP-серверы и
-форматтеры фронтенда, markdown-preview), **rust/cargo** (Rust-матчер `blink.cmp`).
-Плюс рантаймы языков, с которыми работаете (Python и т.д.).
+(сборка `fzf-native`), **tree-sitter-cli** ≥ 0.26.1 (сборка парсеров treesitter на
+ветке `main`), **node + npm** (LSP-серверы и форматтеры фронтенда, markdown-preview),
+**rust/cargo** (Rust-матчер `blink.cmp`). Плюс рантаймы языков, с которыми
+работаете (Python и т.д.). Если `tree-sitter-cli` нет в пакетах вашей ОС —
+`cargo install tree-sitter-cli` (cargo и так нужен для `blink.cmp`).
 
 Остальные LSP-серверы и форматтеры ставить не нужно — их подтянет `mason`.
 
 #### Manjaro / Arch
 ```sh
-sudo pacman -S neovim git ripgrep make gcc nodejs npm rust unzip
+sudo pacman -S neovim git ripgrep make gcc nodejs npm rust tree-sitter-cli unzip
 ```
 
 #### Ubuntu / Debian
@@ -128,6 +131,7 @@ sudo pacman -S neovim git ripgrep make gcc nodejs npm rust unzip
 sudo add-apt-repository ppa:neovim-ppa/unstable
 sudo apt update
 sudo apt install neovim git ripgrep make gcc nodejs npm cargo unzip curl
+cargo install tree-sitter-cli   # в apt пакета обычно нет
 ```
 Проверьте версию: `nvim --version` должно показать `0.11+`. Если apt-версия
 старая, используйте AppImage:
@@ -141,7 +145,7 @@ Node в apt тоже бывает устаревшим — при проблем
 
 #### macOS ([Homebrew](https://brew.sh))
 ```sh
-brew install neovim git ripgrep make node rust
+brew install neovim git ripgrep make node rust tree-sitter
 ```
 (`clang`/`make` также приедут с Command Line Tools: `xcode-select --install`.)
 
@@ -168,7 +172,7 @@ nvim
 1. `lazy.nvim` склонирует и установит все плагины;
 2. `blink.cmp` соберёт Rust-матчер (`cargo build --release`);
 3. `mason` доустановит LSP-серверы и форматтеры (`ensure_installed`);
-4. `treesitter` соберёт парсеры для нужных языков.
+4. `treesitter` (ветка `main`) соберёт парсеры для нужных языков через `tree-sitter-cli`.
 
 Дайте установке завершиться (может занять пару минут). Полезные проверки:
 
